@@ -20,6 +20,7 @@ func main() {
 	http.HandleFunc("/", handler)
 
 	fmt.Println("Server is running on http://localhost:8081")
+
 	err := http.ListenAndServe(":8081", nil)
 	if err != nil {
 		fmt.Println("Error starting server:", err)
