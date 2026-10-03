@@ -1,0 +1,21 @@
+default:
+  image: golang:1.26   # версия должна совпадать с вашей (go version)
+
+stages:
+  - test
+  - build
+
+test:
+  stage: test
+  script:
+    - go vet ./...
+    - go test ./...
+
+build:
+  stage: build
+  script:
+    - CGO_ENABLED=0 go build -o app .
+  artifacts:
+    paths:
+      - app
+    expire_in: 1 week
