@@ -33,6 +33,12 @@ docker-build:
     name: gcr.io/kaniko-project/executor:v1.24.0-debug
     entrypoint: [""]
   script:
+
+    - echo "CI_REGISTRY=$CI_REGISTRY"
+    - echo "CI_REGISTRY_IMAGE=$CI_REGISTRY_IMAGE"
+    - echo "CI_PROJECT_PATH=$CI_PROJECT_PATH"
+    - echo "DOCKER_IMAGE=$DOCKER_IMAGE"
+
     - mkdir -p /kaniko/.docker
     - |
       cat > /kaniko/.docker/config.json <<EOF
@@ -52,3 +58,4 @@ docker-build:
       --destination "$DOCKER_IMAGE_LATEST"
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
+
