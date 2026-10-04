@@ -10,7 +10,7 @@ variables:
 # --- ТЕСТЫ ---
 test:
   stage: test
-  image: golang:1.23-alpine
+  image: golang:1.25-alpine
   script:
     - go vet ./...
     - go test ./...
@@ -18,7 +18,7 @@ test:
 # --- СБОРКА БИНАРНИКА (опционально) ---
 build:
   stage: build
-  image: golang:1.23-alpine
+  image: golang:1.25-alpine
   script:
     - CGO_ENABLED=0 go build -o app .
   artifacts:
@@ -30,7 +30,7 @@ build:
 docker-build:
   stage: docker
   image:
-    name: gcr.io/kaniko-project/executor:v1.23.2-debug
+    name: gcr.io/kaniko-project/executor:v1.25.2-debug
     entrypoint: [""]
   script:
     - mkdir -p /kaniko/.docker
