@@ -7,9 +7,26 @@ variables:
   # Имя образа в Docker Hub. Замените "your-dockerhub-username" на ваш логин.
   DOCKER_IMAGE: "$DOCKER_HUB_USER/gitlab-test:$CI_COMMIT_SHORT_SHA"
   DOCKER_IMAGE_LATEST: "$DOCKER_HUB_USER/gitlab-test:latest"
+# --- ТЕСТЫ ---
+test:
+  stage: test
+  image: golang:1.25-alpine
+  script:
+    - go vet ./...
+    - go test ./...
 
-# ... ваши этапы test и build ...
+# --- СБОРКА БИНАРНИКА (опционально) ---
+build:
+  stage: build
+  image: golang:1.25-alpine
+  script:
+    - CGO_ENABLED=0 go build -o app .
+  artifacts:
+    paths:
+      - app
+    expire_in: 1 week
 
+# --- СБОРКА DOCKER-ОБРАЗА через Kaniko ---
 docker-build:
   stage: docker
   image:
