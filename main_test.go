@@ -7,7 +7,7 @@ func TestGreet(t *testing.T) {
 		t.Errorf("got %q", got)
 	}
 
-	if got := Greet(""); got != "Привет, мир!" {
+	if got := Greet(""); got != "Привет, мир!!!" {
 		t.Errorf("got %q", got)
 	}
 }
