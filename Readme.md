@@ -1,4 +1,4 @@
-включить gitlab
+Запустить gitlab локально на 8080
 
 sudo docker run --detach \           
   --hostname localhost \
