@@ -9,7 +9,7 @@ func Greet(name string) string {
 	if name == "" {
 		name = "мир"
 	}
-	return "Привет, " + name + "!"
+	return "Привет, " + name + "!!!"
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
